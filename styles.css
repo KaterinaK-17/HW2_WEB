@@ -1,0 +1,51 @@
+/* Wireframe style for all blocks */
+.wire {
+  border: 3px solid red;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #fff;
+  min-height: 60px;
+  margin-bottom: 8px;
+}
+
+/* Sidebar should visually span the content on desktop */
+.sidebar {
+  min-height: 420px;
+}
+
+/* Specific block heights for clearer wireframe */
+.row1-box { min-height: 120px; }
+.left-bar { min-height: 60px; }
+.right-large { min-height: 180px; }
+.row3-left { min-height: 140px; }
+.row3-right { min-height: 140px; }
+
+/* Stack the two left bars and distribute space between them to match the right box */
+.left-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.left-stack .wire:first-child { margin-bottom: 15%; }
+
+/* Important: At 750px and below, force complete stacking (100% width) */
+@media (max-width: 750px) {
+  /* Force all bootstrap columns to act full-width */
+  .container-fluid .row > [class*="col-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Reduce heights for mobile readability */
+  .sidebar { min-height: 100px; }
+  .row1-box { min-height: 90px; }
+  .left-bar { min-height: 72px; }
+  .right-large { min-height: 120px; }
+  .row3-left, .row3-right { min-height: 100px; }
+
+  /* On mobile stacking, revert left-stack to normal flow so bars appear one after another */
+  .left-stack { display: block; }
+  .left-stack .wire { margin-bottom: 8px; }
+  .left-stack .wire:first-child { margin-bottom: 8px; }
+}
